@@ -1,0 +1,113 @@
+HTTP协议（Hypertext Transfer Protocol）是一种应用层协议，用于在Web上传输数据。
+它被设计为一种无状态、可扩展、通用的协议，支持各种各样的数据格式和应用类型。
+HTTP协议通常用于Web浏览器和Web服务器之间的通信，是Web应用程序的核心协议。
+
+HTTP协议的主要特点：
+    无状态：每个HTTP请求都是独立的，服务器不会记录之前的请求信息。这样可以减少服务器的负载，提高系统的可伸缩性。
+        也就是说，服务器不会记住每个客户端的状态信息。在每次客户端和服务器之间进行通信时，都需要重新建立连接。
+        因此，在HTTP中，每个请求都是独立的，请求-响应过程是一个完整的事务，一旦发送并接收到响应，客户端和服务器的连接就会断开。
+    可靠性：HTTP协议通过使用TCP可靠连接来保证消息的传递。TCP协议提供了可靠的数据传输服务，保证了消息正确和按序到达。
+    平台无关性：HTTP协议是无关平台的，可以在任何操作系统和硬件平台上运行。
+    灵活性：HTTP协议支持多种数据格式和应用类型的传输，可以通过添加新的头字段扩展协议。
+
+HTTP协议的工作方式：
+HTTP协议使用客户端-服务器模型，客户端发起一个HTTP请求，服务器则响应该请求。
+服务器接收到HTTP请求后，将会解析请求，根据请求URL去寻找相应的资源并生成HTTP响应，
+
+HTTP协议的缺点：
+    无状态：虽然无状态设计可以简化服务器的处理过程，但也导致了需要建立多次连接，增加了网络流量。
+    安全性较低：HTTP协议在消息传递过程中未对消息内容进行加密，容易被窃听和篡改，无法保证数据的安全性。
+    性能问题：由于HTTP协议在传输数据时需要占用大量的网络带宽，所以在高并发和大流量的场景下，会出现性能瓶颈。
+
+为了解决HTTP协议的缺点，随着Web应用程序的不断发展，出现了一些新的协议，如HTTPS、SPDY和HTTP/2，
+它们都是对HTTP协议的补充和扩展，提供了更好的性能、可靠性和安全性，促进了Web应用程序的发展。
+
+
+
+
+HTTP 协议的请求由请求行、请求头和请求体三个部分组成。其中请求行包括请求方法、请求 URI 和协议版本；
+请求头则包含了请求的元数据信息，如 User-Agent、Accept 等属性；
+请求体则是可选的，包含请求的实体内容。下面分别介绍请求行、请求头和请求体的具体组成和作用。
+1. 请求行
+请求行是 HTTP 请求的第一部分，包括以下三个部分：
+请求方法：表示请求使用的 HTTP 方法，常见的有 GET、POST、PUT、DELETE、HEAD 等。
+请求 URI：表示请求的资源标识符，即 URL 地址。
+HTTP 协议版本：表示请求使用的 HTTP 协议版本，常见的有 HTTP/1.0、HTTP/1.1、HTTP/2 等。
+示例：
+GET /index.html HTTP/1.1
+
+2. 请求头
+请求头是 HTTP 请求的元数据信息，包含若干个属性，每个属性都是由属性名和属性值组成。常用的请求头包括：
+Accept：指定客户端接受的 MIME 类型，用于指定客户端希望接收哪些数据类型，
+常见的有 text/html、application/json、image/jpeg 等。
+User-Agent：表示用户代理，即指浏览器或其他客户端程序的名称和版本号。
+Content-Type：表示请求实体的 MIME 类型，用于指定请求体的格式，
+常见的有 application/x-www-form-urlencoded、application/json、multipart/form-data 等。
+Content-Length：表示请求实体的长度，用于指定请求体的大小。
+Host：表示请求的主机名和端口号。
+示例：
+GET /index.html HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0
+Host: www.google.com
+
+3. 请求体
+请求体是 HTTP 请求的可选部分，用于传输 HTTP 请求的实体内容，比如表单数据、JSON 数据、二进制数据等。
+请求体的类型和格式由 Content-Type 头字段指定。
+示例：
+POST /login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+username=johndoe&password=123
+
+以上是HTTP协议的请求头等组成部分。请求头能够非常灵活地设置各种属性以达到定制化的效果，
+这也使得 HTTP 协议得以广泛应用于各种不同的应用场景中。
+
+
+
+
+HTTP 协议的响应由状态行、响应头和响应体三个部分组成。其中状态行包括状态码和状态消息；
+响应头则包含了响应的元数据信息，如 Content-Type、Cache-Control 等属性；
+响应体则是可选的，包含了响应实体内容。下面我们将分别介绍响应行、响应头和响应体的具体组成和作用。
+
+1. 状态行
+状态行是 HTTP 响应的第一部分，包括以下三个部分：
+协议版本：表示使用的 HTTP 协议版本，如 HTTP/1.0、HTTP/1.1、HTTP/2 等。
+状态码：表示服务器对请求的处理结果，常见的有 200（OK）、404（Not Found）、500（Internal Server Error）等。
+状态消息：表示状态码的简要描述，用于提供附加信息。
+示例：
+HTTP/1.1 200 OK
+
+2. 响应头
+响应头是 HTTP 响应的元数据信息，包含若干个属性，每个属性由属性名和属性值组成。常用的响应头包括：
+Content-Type：表示响应实体的 MIME 类型，用于指定响应体的格式，常见的有 text/html、application/json、image/jpeg 等。
+Cache-Control：表示缓存控制，用于指定是否缓存响应，以及缓存的设定值。
+Content-Length：表示响应实体的长度。
+Server：表示服务器的名称和版本号。
+示例：
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 1024
+Cache-Control: no-cache, no-store, must-revalidate
+Server: Apache/2.4.6 (CentOS)
+
+3. 响应体
+响应体是 HTTP 响应的可选部分，包含了响应实体内容，即服务器发送给客户端的数据。
+响应体的类型和格式由 Content-Type 头字段指定。
+示例：
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 1024
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example</title>
+</head>
+<body>
+    <h1>Hello, world!</h1>
+</body>
+</html>
+
+以上是HTTP协议的响应头等组成部分。响应头也能像请求头一样非常灵活地设置各种属性以达到定制化的效果，
+使得 HTTP 协议得以广泛应用于各种不同的应用场景中。

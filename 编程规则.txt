@@ -1,0 +1,5 @@
+类首字母大写 ChatServer
+函数用驼峰 chatBind
+成员函数用类名+函数功能 chatServerBind
+常量全部大写 PORT
+变量中间_ default_port
